@@ -1,8 +1,8 @@
 import React from "react";
-import { SignIn } from "./pages/SignIn";
+import WelcomeScreen  from "./pages/welcome";
 
 export default function App() {
   return (
-    <SignIn/>
+    <WelcomeScreen/>
   );
 }
