@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, Button, ImageBackground, TouchableOpacity } from 'react-native';
+import { ImageBackground, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
-
 
 const BackgroundImage = styled(ImageBackground)`
   flex: 1;
@@ -11,7 +10,7 @@ const BackgroundImage = styled(ImageBackground)`
 
 const Overlay = styled(View)`
   flex: 1;
-  background-color: rgba(0, 0, 255, 0.5); /* Blue semi-transparent overlay */
+  background-color: rgba(0, 0, 255, 0.5);
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -19,42 +18,52 @@ const Overlay = styled(View)`
 
 const WelcomeText = styled.Text`
   font-size: 24px;
-  margin-bottom: 100px;
+  margin-bottom: 30px;
   color: white;
 `;
 
 const ButtonContainer = styled.View`
-  flex-direction: column;
-  align-items: center; /* Center buttons horizontally */
+  width: 80%;
 `;
 
 const CustomButton = styled(TouchableOpacity)`
-  background-color: rgba(2, 152, 118, 1); /* Custom button background color */
-  border-radius: 50px; /* Round border */
-  padding: 15px 30px; /* Fixed width and height for both buttons */
-  margin-bottom: 10px; /* Add space between the buttons */
+  background-color: rgba(2, 152, 118, 1);
+  border-radius: 5px;
+  padding: 15px;
+  margin-top: 20px;
 `;
 
 const ButtonText = styled.Text`
-  color: white; /* Custom button text color */
+  color: white;
+  text-align: center;
 `;
 
-function WelcomeScreen () {
+function WelcomeScreen({ navigation }) {
+  const handleSignupPress = () => {
+    navigation.navigate('Signup');
+  };
+  const handleLoginPress = () => {
+    navigation.navigate('Login');
+  };
+
   return (
     <BackgroundImage source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn9PfKpQ0Bbtl2236KAz1bwrxUVhvdzOVn-fO5hysHjZsgCuzy8g8vWy7NRMyNBMhy5H0&usqp=CAU' }}>
       <Overlay>
-        <WelcomeText>Bem vindo ao HospedaAqui!</WelcomeText>
+        <WelcomeText>Bem-vindo ao HospedaAqui!</WelcomeText>
         <ButtonContainer>
-          <CustomButton title="Login" >
+          <CustomButton onPress={handleLoginPress}>
             <ButtonText>Login</ButtonText>
           </CustomButton>
-          <CustomButton title="Registrar">
-            <ButtonText>Registrar</ButtonText>
+        </ButtonContainer>
+        <ButtonContainer>
+          <CustomButton onPress={handleSignupPress}>
+            <ButtonText>Sign Up</ButtonText>
           </CustomButton>
         </ButtonContainer>
       </Overlay>
     </BackgroundImage>
   );
-};
+}
 
 export default WelcomeScreen;
+
